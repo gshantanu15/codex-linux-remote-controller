@@ -1,0 +1,38 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install native test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends \
+            build-essential \
+            dbus-x11 \
+            gnome-keyring \
+            libnode-dev \
+            libsecret-1-dev \
+            libssl-dev \
+            pkg-config
+
+      - name: Run tests
+        run: npm test
+
+      - name: Audit publishable source
+        run: npm run audit:publication

@@ -1,0 +1,45 @@
+name: Codex update incompatibility
+description: Report a new Codex version that fails strict inspection or verification.
+title: "[Update]: "
+labels:
+  - compatibility
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not upload app.asar or extracted proprietary source. Sanitized marker counts and error messages are sufficient.
+  - type: input
+    id: previous-version
+    attributes:
+      label: Last working Codex version
+    validations:
+      required: true
+  - type: input
+    id: new-version
+    attributes:
+      label: New Codex version
+    validations:
+      required: true
+  - type: textarea
+    id: inspect
+    attributes:
+      label: Sanitized inspect output
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test results
+      description: Include npm test and npm run audit:publication results.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Publication boundaries
+      options:
+        - label: I did not weaken a uniqueness or hash check to force installation.
+          required: true
+        - label: I did not attach proprietary binaries, profile data, or secrets.
+          required: true

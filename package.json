@@ -1,0 +1,26 @@
+{
+  "name": "codex-linux-remote-controller",
+  "version": "0.3.0",
+  "description": "Experimental Linux controller patch for Codex Remote Connections",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build:native": "node bin/build-native-addon.mjs",
+    "inspect": "node bin/inspect.mjs",
+    "install": "npm run build:native && node bin/install-test-copy.mjs",
+    "official:install": "npm run build:native && node bin/install-official.mjs",
+    "official:restore": "node bin/restore-official.mjs",
+    "official:verify": "node bin/verify-official.mjs",
+    "verify": "node bin/verify-test-copy.mjs",
+    "launch": "node bin/launch-test-copy.mjs",
+    "remove": "node bin/remove-test-copy.mjs",
+    "test:js": "node --test test/remote-controller-patch.test.mjs",
+    "test:native": "npm run build:native && node --test test/native-addon.test.mjs",
+    "test": "npm run test:js && npm run test:native",
+    "audit:publication": "node scripts/audit-publication.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,17 @@
+.deps/
+build/
+coverage/
+node_modules/
+
+*.AppImage
+*.asar
+*.deb
+*.log
+*.node
+*.pem
+*.pfx
+*.key
+
+.DS_Store
+official-installs/
+profiles/
