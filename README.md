@@ -33,6 +33,8 @@ On 2026-09-28, version `26.924.22138` was tested on an Intel MacBook Air with an
 
 This is a tested configuration, not a compatibility guarantee. The patch currently targets Linux x86-64 and arm64 builds, while the live end-to-end test was x86-64 only.
 
+Version `0.3.1` recognizes the reviewed binding in Codex `26.1002.51308`, where the feature-flag function was renamed from `he` to `ne`. Inspection, regression tests, and isolated-copy integrity and addon-export verification pass on Linux x86-64. Live enrollment and reconnection on that version remain pending. See [Renderer gate patch](docs/04-ui-gate-patch.md).
+
 ## Choose an installation mode
 
 ### Isolated test copy — recommended
@@ -106,7 +108,7 @@ This project does not emulate a TPM, claim T2 attestation, or port Apple's Secur
 - Public metadata is stored with owner-only directory and file permissions.
 - The provider exposes create, lookup, sign, and delete operations—no export operation.
 - The patch verifies unique bundle markers, ASAR integrity, source hashes, staged hashes, and rollback hashes.
-- Unknown Codex versions or changed client markers fail closed rather than being patched blindly.
+- Missing, changed, or ambiguous required markers cause refusal. There is no reviewed-version allowlist; an unfamiliar release can pass structural checks and still require manual review and a live smoke test.
 
 Secret Service is **not equivalent** to a TPM, Secure Enclave, or genuinely non-exportable PKCS#11 key. A malicious process running as the logged-in user, or root, may be able to retrieve the stored secret. The protocol label describes the addon's API behavior, not a hardware guarantee.
 

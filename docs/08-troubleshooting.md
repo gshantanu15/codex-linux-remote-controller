@@ -39,6 +39,22 @@ Likely causes:
 
 Close Codex, run the applicable verify command, and reinstall only after `npm test` and `npm run inspect` pass.
 
+## Inspection reports zero feature-flag bindings after an update
+
+The error `Expected one 782640499 feature-flag binding, found 0` means the renderer no longer matches a recognized binding. It does not by itself establish that the feature flag or controller UI was removed.
+
+Codex `26.1002.51308` renamed the feature-flag function from `he` to `ne`; project version `0.3.1` recognizes this reviewed change. Update the project checkout before inspecting that package again:
+
+```bash
+git pull --ff-only
+npm test
+npm run inspect
+```
+
+If tests and inspection pass, close every Codex process and use `npm run official:install`, followed by `npm run official:verify`. Restart the app and manually confirm the Windows host reconnects and a harmless remote task succeeds. Structural verification alone is not an end-to-end test.
+
+If inspection still fails, stop and report the package version and sanitized error. Do not remove uniqueness checks, accept arbitrary function names, or copy an old patched archive over the updated release.
+
 ## Secret Service or keyring errors
 
 The provider requires an active desktop session service.

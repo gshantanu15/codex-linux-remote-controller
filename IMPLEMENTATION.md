@@ -55,7 +55,7 @@ Because `pkexec` executes the helper and imported modules from the user-owned ch
 
 ## Validation completed
 
-- Six JavaScript and contract tests pass.
+- JavaScript archive and client-contract regression tests cover both reviewed flag bindings, integrity preservation, and rejection of ambiguous or corrupted inputs.
 - The native integration test passes in a disposable D-Bus/GNOME Keyring session.
 - Create, public lookup, sign, external signature verification, empty-payload signing, permissions, and idempotent deletion pass.
 - The staged provider loads with exactly the four expected exports.
@@ -63,6 +63,14 @@ Because `pkexec` executes the helper and imported modules from the user-owned ch
 - The official installation was subsequently patched and verified through the separate privileged workflow.
 
 Tested on 2026-09-28 with Codex `26.924.22138`.
+
+## October compatibility update
+
+Codex `26.1002.51308` retains feature flag `782640499` but renames its renderer function from `he` to `ne`. The original inspector's hard-coded function name rejected the updated package before any files were patched. Version `0.3.1` recognizes both reviewed names while preserving uniqueness, same-length replacement, and integrity checks.
+
+The new visibility assignment is `K=!d`, patched to `K=!0`. Synthetic regression fixtures cover both reviewed builds; no extracted application bundle is included in the repository.
+
+Validation for the new package includes 14 JavaScript regression tests, the disposable native keyring integration test, actual-package inspection, and isolated-copy hash, integrity, and four-export verification. The official reapplication workflow remains available for manual validation. Live enrollment, reconnection, and remote task execution on the new version have not yet been confirmed.
 
 ## Detailed reading
 

@@ -1,6 +1,6 @@
 {
   "name": "codex-linux-remote-controller",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Experimental Linux controller patch for Codex Remote Connections",
   "private": true,
   "license": "Apache-2.0",

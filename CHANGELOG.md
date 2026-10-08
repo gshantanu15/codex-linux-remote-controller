@@ -2,6 +2,20 @@
 
 All notable project changes are documented here.
 
+## 0.3.1 — 2026-10-08
+
+### Fixed
+
+- Recognize the reviewed `ne` feature-flag function in Codex `26.1002.51308`, while retaining the earlier `he` binding in `26.924.22138`.
+- Preserve unique binding/gate checks, same-length edits, and ASAR integrity verification.
+- Add regression tests for both bindings, multi-block integrity, ambiguous or missing gates, unreviewed functions, corrupted targets, and already-patched archives.
+
+### Validation status
+
+- All 14 JavaScript regression tests and the disposable native keyring integration test pass.
+- Inspection and isolated-copy hash, integrity, and addon-export verification pass for `26.1002.51308` on Linux x86-64.
+- Live enrollment and Windows-host reconnection on `26.1002.51308` remain pending; static compatibility does not establish end-to-end support.
+
 ## 0.3.0 — 2026-09-28
 
 ### Added
